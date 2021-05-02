@@ -18,12 +18,8 @@ Auth::routes();
 
 Route::redirect('/', 'login');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth',
+    'namespace' => 'Admin'],function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/student', 'UserController')->names('student');
+});

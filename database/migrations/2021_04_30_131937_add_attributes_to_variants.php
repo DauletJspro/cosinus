@@ -14,7 +14,6 @@ class AddAttributesToVariants extends Migration
     public function up()
     {
         Schema::table('variants', function (Blueprint $table) {
-            $table->string('title_ru')->nullable()->after('title_kz');
             $table->integer('price')->after('school_id')->nullable();
             $table->tinyInteger('is_free')->nullable()->after('description_ru');
             $table->tinyInteger('is_demo')->nullable()->after('is_free');
@@ -29,7 +28,7 @@ class AddAttributesToVariants extends Migration
     public function down()
     {
         Schema::table('variants', function (Blueprint $table) {
-            $table->dropColumn(['title_kz', 'title_ru', 'price', 'is_free', 'is_demo']);
+            $table->dropColumn(['price', 'is_free', 'is_demo']);
         });
     }
 }

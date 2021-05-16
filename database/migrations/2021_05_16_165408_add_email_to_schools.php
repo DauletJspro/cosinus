@@ -14,7 +14,7 @@ class AddEmailToSchools extends Migration
     public function up()
     {
         Schema::table('schools', function (Blueprint $table) {
-            $table->string('email')->unique()->after('school_id')->nullable();
+            $table->string('email')->unique()->after('id')->nullable();
         });
     }
 

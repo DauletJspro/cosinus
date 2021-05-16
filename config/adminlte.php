@@ -244,6 +244,21 @@ return [
             'text' => 'Студенты',
             'url'  => 'admin/student',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text'    => 'Школы',
+            'icon'    => 'fas fa-fw fa-school',
+            'submenu' => [
+                [
+                    'text' => 'Список',
+                    'url'  => 'admin/school',
+
+                ],
+                [
+                    'text' => 'Добавить',
+                    'url'  => 'admin/school/create',
+                ],
+            ],
         ]
     ],
 

@@ -259,22 +259,22 @@ return [
                     'url' => 'admin/school/create',
                 ],
             ],
-        ]
-    ],
-    [
-        'text' => 'Учебные центры',
-        'url' => 'admin/center',
-        'icon' => 'fas fa-fw fa-building',
-    ],
-    [
-        'text' => 'Предметы',
-        'url' => 'admin/subject',
-        'icon' => 'fas fa-fw fa-apple-alt',
-    ],
-    [
-        'text' => 'Тесты',
-        'url' => 'admin/test',
-        'icon' => 'fas fa-fw fa-check',
+        ],
+        [
+            'text' => 'Учебные центры',
+            'url' => 'admin/center',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Предметы',
+            'url' => 'admin/subject',
+            'icon' => 'fas fa-fw fa-apple-alt',
+        ],
+        [
+            'text' => 'Тесты',
+            'url' => 'admin/test',
+            'icon' => 'fas fa-fw fa-check',
+        ],
     ],
 
 

@@ -3,84 +3,77 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EducationCenterRequest;
 use App\Models\EducationCenter;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EducationCenterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $centres = EducationCenter::select(
+            'id',
+            'name_kz',
+            'name_ru',
+            'description_ru',
+            'description_kz',
+            'contact_phone',
+            'contact_email',
+            'image'
+        )->paginate(15);
+
+        return view('admin.center.index', compact('centres'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.center.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(EducationCenterRequest $request)
     {
-        //
+        $result = EducationCenter::store($request);
+
+        if ($result) {
+            return redirect(route('center.index'))
+                ->with('success', 'Вы успешно добавили центр!');
+        }
+        return redirect(route('center.create'))
+            ->withInput()
+            ->with(['error' => 'error']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\EducationCenter $educationCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function show(EducationCenter $educationCenter)
+
+    public function edit(EducationCenter $center)
     {
-        //
+        return view('admin.center.edit', compact('center'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\EducationCenter $educationCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EducationCenter $educationCenter)
+    public function update(EducationCenterRequest $request, $id)
     {
-        //
+
+        $result = EducationCenter::updateData($request, EducationCenter::findOrFail($id));
+
+        if ($result['success']) {
+            return redirect(route('center.index'))
+                ->with('success', 'Вы успешно добавили центр!');
+        }
+        return redirect(route('center.create'))
+            ->withInput()
+            ->with(['error' => $result['message']]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\EducationCenter $educationCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, EducationCenter $educationCenter)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\EducationCenter $educationCenter
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(EducationCenter $educationCenter)
-    {
-        //
+        if (EducationCenter::findOrFail($id)->delete()) {
+            return redirect(route('center.index'))
+                ->with('success', 'Вы успешно удалили центр!');
+        }
+        return redirect(route('center.index'))
+            ->withInput()
+            ->with(['error' => 'Произошла ошибка']);
     }
 }

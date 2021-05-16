@@ -19,10 +19,14 @@ Auth::routes();
 Route::redirect('/', 'login');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth',
-    'namespace' => 'Admin'],function (){
+    'namespace' => 'Admin'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('/student', 'UserController')->names('student');
     Route::resource('/school', 'SchoolController')->names('school');
+    Route::resource('/center', 'EducationCenterController')->names('center');
+    Route::resource('/subject', 'SubjectController')->names('subject');
+    Route::resource('/test', 'TestController')->names('test');
+    Route::resource('/question', 'QuestionController')->names('question');
 });
 
 Auth::routes();

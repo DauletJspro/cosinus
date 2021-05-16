@@ -231,18 +231,18 @@ return [
         ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
         ['header' => 'account_settings'],
         [
             'text' => 'Главная',
-            'url'  => 'admin/home',
+            'url' => 'admin/home',
             'icon' => 'fas fa-home',
         ],
         [
             'text' => 'Студенты',
-            'url'  => 'admin/student',
+            'url' => 'admin/student',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
@@ -260,6 +260,24 @@ return [
                 ],
             ],
         ]
+        ],
+        [
+            'text' => 'Учебные центры',
+            'url' => 'admin/center',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Предметы',
+            'url' => 'admin/subject',
+            'icon' => 'fas fa-fw fa-apple-alt',
+        ],
+        [
+            'text' => 'Тесты',
+            'url' => 'admin/test',
+            'icon' => 'fas fa-fw fa-check',
+        ],
+
+
     ],
 
     /*

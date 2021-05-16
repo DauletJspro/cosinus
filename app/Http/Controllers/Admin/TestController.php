@@ -3,84 +3,63 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TestRequest;
+use App\Models\Subject;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $tests = Test::all();
+        return view('admin.test.index', compact('tests'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.test.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(TestRequest $request)
     {
-        //
+        $result = Test::store($request);
+        if ($result['success']) {
+            return redirect(route('test.index'))
+                ->with('success', 'Вы успешно добавили тест!');
+        }
+        return redirect(route('test.create'))
+            ->withInput()
+            ->with(['error' => $result['message']]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Test $test
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Test $test)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Test $test
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Test $test)
     {
-        //
+        $questions = $test->questions;
+        return view('admin.test.edit', compact('test', 'questions'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Test $test
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Test $test)
+    public function update(TestRequest $request, Test $test)
     {
-        //
+        $result = Test::changeData($request, $test);
+        if ($result['success']) {
+            return redirect(route('test.index'))
+                ->with('success', 'Вы успешно изменили тест!');
+        }
+        return redirect(route('test.create'))
+            ->withInput()
+            ->with(['error' => $result['message']]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Test $test
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Test $test)
     {
-        //
+        $result = Test::deleteAll($test);
+        if ($result['success']) {
+            return redirect(route('test.index'))
+                ->with('success', 'Вы успешно удалили тест!');
+        }
+        return redirect(route('test.index'))
+            ->withInput()
+            ->with(['error' => $result['message']]);
     }
 }

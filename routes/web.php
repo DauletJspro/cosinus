@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth',
     Route::resource('/subject', 'SubjectController')->names('subject');
     Route::resource('/test', 'TestController')->names('test');
     Route::resource('/question', 'QuestionController')->names('question');
+    Route::resource('/variant', 'VariantController')->names('variant');
+
 });
 
 Auth::routes();

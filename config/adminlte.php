@@ -274,7 +274,11 @@ return [
             'text' => 'Тесты',
             'url' => 'admin/test',
             'icon' => 'fas fa-fw fa-check',
-        ],
+        ],        [
+            'text' => 'Вариант',
+            'url' => 'admin/variant',
+            'icon' => 'fas fa-fw fa-calculator',
+        ]
     ],
 
 

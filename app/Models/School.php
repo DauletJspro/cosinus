@@ -10,6 +10,6 @@ class School extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name_kz', 'name_ru', 'description_kz', 'description_ru', 'phone'
+        'name_kz', 'name_ru', 'description_kz', 'description_ru', 'phone', 'email'
     ];
 }

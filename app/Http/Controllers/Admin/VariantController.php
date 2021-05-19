@@ -73,7 +73,7 @@ class VariantController extends Controller
     public function edit(Variant $variant)
     {  $centers = \App\Models\EducationCenter::all()->pluck('name_ru', 'id')->toArray();
         $schools = School::all()->pluck('name_ru', 'id')->toArray();
-        $languages = ['Казахский', 'Русский'];
+        $languages = [1 => 'Казахский', 2 => 'Русский'];
         return view('admin.variant.edit',
             compact('variant', 'centers', 'schools', 'languages'));
     }

@@ -237,7 +237,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'Главная',
-            'url' => 'admin/home',
+            'url' => 'admin/index',
             'icon' => 'fas fa-home',
         ],
         [

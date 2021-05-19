@@ -86,7 +86,7 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(Request $id)
+    public function destroy($id)
     {
         $result = School::findOrFail($id)->delete();
         if ($result){

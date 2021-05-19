@@ -37,7 +37,7 @@
                         <td>{{$variant->description_ru}}</td>
                         <td>{{\App\Models\Variant::center($variant->center_id)}}</td>
                         <td>{{\App\Models\Variant::school(($variant->school_id))}}</td>
-                        <td> @if($variant->language = 1) Казахский @elseif($variant->language = 2) Руский @endif </td>
+                        <td> @if($variant->language == 1) Казахский @elseif($variant->language == 2) Руский @endif </td>
                         <td>{{$variant->price}}</td>
                         <td>@if($variant->is_free) <i class="fas fa-check"></i> @else <i class="fas fa-times"></i> @endif
                         </td>
